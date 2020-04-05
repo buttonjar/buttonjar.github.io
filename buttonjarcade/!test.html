@@ -1,7 +1,7 @@
 <html>
 <head>
 </head>
-<body style="background-color: #333;">
+<body style="background-color: #333; margin: 0px;">
 
 <div style="	min-width: 512px; 
 				max-width: 512px;
@@ -11,12 +11,78 @@
 				margin-left: auto;
 				margin-right: auto;
 
-				background-color: #3a3a3a;
+				background-color: black;
+				backgsround-image: url('grid.png');
 				">
 
 
-	<canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" width="0" height="0"></canvas>
+	<!-- the itch app messes with the first found canvas // from @ultrabrite's shell-->
+	<!-- I don't know if this is needed, but it doesn't seem to hurt anything -- Aren -->
+	<canvas id="dummy4itchapp" style="position:absolute;visibility:hidden;width:0;height:0;"></canvas>
 
+
+	  
+
+
+<style>
+.p8-button
+{
+	width: 64px;
+	height: 64px;
+
+	background-color: #333;
+	border: 5px solid white;
+	border-radius: 16px;
+	margin: auto;
+	
+	opacity: 0.333;
+}
+
+.p8-button:hover
+{
+	opacity: 0.666;
+}
+
+.p8-button:active
+{
+	opacity: 1.0;
+}
+
+table
+{
+border-collapse: collapse;
+}
+
+td
+{
+padding: 0px;
+text-align: center;
+}
+
+</style>
+
+<table width="512" height="512">
+<tr>
+<td colspan ="7" style="min-height: 384px; max-height: 384px;">
+	<!-- The actual game window -->
+	<canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"
+		style="	min-width:384px;
+				max-width:384px;
+				min-height:384px;
+				max-height:384px;
+
+				image-rendering: optimizeSpeed;
+				image-rendering: -moz-crisp-edges;
+				image-rendering: -webkit-optimize-contrast;
+				image-rendering: optimize-contrast;
+				image-rendering: pixelated;
+
+				background-color: black;
+				cursor: none;
+				">
+	</canvas>
+
+	<!-- I have no idea what this does -->
 	<script type="text/javascript">
 		var canvas = document.getElementById("canvas");
 		canvas.width = window.innerWidth;
@@ -25,40 +91,46 @@
 		Module.canvas = canvas;
 	</script>
 
+	<!-- This loads the game in the window -->
 	<script async="" type="text/javascript" src="breakout-hero.js">
 	</script>
-	  
-	<script>
-		function onKeyDown_blocker(event) {
-			event = event || window.event;
-			var o = document.activeElement;
-			if (!o || o == document.body || o.tagName == "canvas")
-			{
-				if ([32, 37, 38, 39, 40].indexOf(event.keyCode) > -1)
-				{
-					if (event.preventDefault) event.preventDefault();
-				}
-			}
-		}
-		document.addEventListener('keydown', onKeyDown_blocker, false);
-	</script>
+</td>
+</tr>
 
+<tr>
+<td style="width: 5%;">&nbsp;</td>
 
-	<div onclick="Module.pico8Reset();">
-		<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAaklEQVR4Ae2dOwoAMQhE15A+rfc/3bZ7AlMnQfywCkKsfcgMM9ZP+QHtIn0vLeBAFduiFdQ/0DmvtR5LXJ6CPSXe2ZXcFNlTxFbemKrbZPs35XogeS9xeQr+anT6LzoOwEDwZJ7jwhXUnwkTTiDQ2Ja34AAAABB0RVh0TG9kZVBORwAyMDExMDIyMeNZtsEAAAAASUVORK5CYII=" alt="Reset" width="12" height="12/">
-		Reset
-	</div>
+<td style="width:18%; height: 128px ;min-height: 128px; max-height: 128px;">
 
-	<div onclick="Module.pico8TogglePaused();">
-		<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAPUlEQVR4Ae3doQ0AIAxEUWABLPtPh2WCq26DwFSU/JPNT166QSu/Hg86W9dwLte+diP7AwAAAAAAgD+A+jM2ZAgo84I0PgAAABB0RVh0TG9kZVBORwAyMDExMDIyMeNZtsEAAAAASUVORK5CYII=" alt="Pause" width="12" height="12/">
-		Pause
-	</div>
-	
-	
-	<div onclick="Module.pico8ToggleSound();">
-		<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAXklEQVR4Ae2doQ4AIQxD4YLH8v9fh+ULhjpxxSwLg2uyapr1JRu1iV5Z+1BGl4+xNpX38SYo2uRvYiT5LwEmt+ocgXVLrhPEgBiw8Q5w7/kueSkK+D2tJO4E/I3GrwkqQCBabEj/4QAAABB0RVh0TG9kZVBORwAyMDExMDIyMeNZtsEAAAAASUVORK5CYII=" alt="Toggle Sound" width="12" height="12/">
-		Sound
-	</div>
+		<img class="p8-button" onclick="Module.pico8TogglePaused();"
+			src="icon-64x64.png"
+			/>
+</td>
+<td style="width:18%; height: 128px ;min-height: 128px; max-height: 128px;">
+		<img class="p8-button" onclick="Module.pico8ToggleSound();"
+			src="icon-64x64.png"
+			/>
+</td>
+<td style="width:18%; height: 128px ;min-height: 128px; max-height: 128px;">
+		<img class="p8-button" onclick="Module.pico8ToggleControlMenu();"
+			src="icon-64x64.png"
+			/>
+</td>
+<td style="width:18%; height: 128px ;min-height: 128px; max-height: 128px;">
+		<img class="p8-button" onclick="window.location.reload(true);"
+			src="icon-64x64.png"
+			/>
+</td>
+
+<td style="width:18%; height: 128px ;min-height: 128px; max-height: 128px;">
+		<img class="p8-button" onclick="window.location.reload(true);"
+			src="icon-64x64.png"
+			/>
+</td>
+<td style="width: 5%;">&nbsp;</td>
+</tr>
+</table>
+		
 	
 	<div >
 		<a target="_new" href="http://www.lexaloffle.com/bbs/?cat=7&amp;sub=2">
@@ -68,6 +140,8 @@
 	</div>	
 
 	</div>
+
+
 
 </body>
 </html>
