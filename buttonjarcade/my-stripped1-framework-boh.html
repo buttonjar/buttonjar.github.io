@@ -329,6 +329,7 @@
 	var p8_touch_detected = false;
 	addEventListener("touchstart", function(event){p8_touch_detected = true; },  {passive: true});
 
+<!-- needed for ipad audio I think -->
 	function p8_create_audio_context()
 	{
 		if (pico8_audio_context) 
@@ -351,7 +352,7 @@
 		}
 	}
 
-
+/*
 	// just hides. can reopen in a paused state.
 	function p8_close_cart()
 	{
@@ -359,6 +360,7 @@
 		p8_touch_detected = false;
 		Module.pico8SetPaused(1);
 	}
+*/
 
 	var p8_is_running = false;
 	var p8_script = null;
@@ -416,7 +418,7 @@
 		}
 	}
 
-	
+/*	
 	// gamepad  https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API/Using_the_Gamepad_API
 	// (sets bits in pico8_buttons[])
 	function p8_update_gamepads() {
@@ -455,6 +457,7 @@
 	}
 	requestAnimationFrame(p8_update_gamepads);
 
+*/
 	// key blocker. prevent cursor keys from scrolling page while playing cart.
 	// also don't act on M, R so that can mute / reset cart
 	document.addEventListener('keydown',
@@ -466,7 +469,8 @@
 				if (event.preventDefault) event.preventDefault();
 	},{passive: false});
 
-	function p8_request_fullscreen() {
+
+/*	function p8_request_fullscreen() {
 
 		var is_fullscreen=(document.fullscreenElement || document.mozFullScreenElement || document.webkitIsFullScreen || document.msFullscreenElement);
 
@@ -494,7 +498,7 @@
 			el.webkitRequestFullScreen( Element.ALLOW_KEYBOARD_INPUT );
 		}
 	}
-
+*/
 
 </script>
 
@@ -634,13 +638,34 @@ canvas{
 										display:none;
 										">
 
-
+			<div  id="touch_controls_background"
+				  style=" pointer-events:none; display:none; background-color:#000;
+						 position:fixed; top:0px; left:0px; border:0; width:100vw; height:100vh">
+				&nbsp
+			</div>
 
 			<div style="display:flex; position:relative">
 				<canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault();" ></canvas>
 
 			</div>
 
+
+			<!-- display after first layout update -->
+			<div  id="touch_controls_gfx"
+				  style=" pointer-events:none; display:table; 
+						 position:fixed; top:0px; left:0px; border:0; width:100vw; height:100vh">
+
+					<img src="" id="controls_right_panel" style="position:absolute; opacity:0.5;">
+					<img src="" id="controls_left_panel" style="position:absolute;  opacity:0.5;">
+						
+			
+			</div> <!-- touch_controls_gfx -->
+
+			<script type="text/javascript">
+				
+
+				
+			</script>
 
 		</div> <!--p8_playarea -->
 
