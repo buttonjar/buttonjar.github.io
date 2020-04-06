@@ -554,7 +554,27 @@ canvas{
 -->
 </STYLE>
 
+
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> 
 </head>
+
+<!--
+
+Notes for tomorrow.
+I seem to have successfully removed the onscreen controls at this point. Page loads correctly (the second time)
+in iOS. First load is long and skinny? Sound inSL is inconsitent at the start of the game. I may need to provide 
+documentation, or otherwise 'say something' to the player, if I can track that interaction somehow with lsl. 
+
+Not sure.
+
+The next step is to try and remove dynamic sizing, and strip the HTML down to repeatable blocks in a table framework.
+
+That, and to make the UI buttons visible, but visually 'off' even before the game loads. Dim but visible, color
+changes, something.
+
+So far though, it IS promising.
+
+-->
 
 <body style="padding:0px; margin:0px; background-color:#222; color:#ccc">
 
@@ -653,8 +673,9 @@ canvas{
 	
 </script>
 
-<script type="text/javascript"> document.write(document.lastModified);</script>
-
+<span style="font-size: 10px;font-family: 'Lucida Console', Monaco, monospace">
+<script type="text/javascript"> document.write("Last Modified: " + document.lastModified);</script>
+</span>
 <!-- uncomment this if you want clipboard access
 	<textarea id="codo_textarea" class="emscripten" style="position:absolute; left:-9999px;"></textarea>	
 -->
