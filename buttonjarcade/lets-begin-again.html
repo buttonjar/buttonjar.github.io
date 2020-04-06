@@ -308,12 +308,12 @@
 			p8_frame.scrollIntoView(true);
 
 			//document.getElementById("touch_controls_gfx").style.display="table";
-			document.getElementById("touch_controls_background").style.display="table";
+			//document.getElementById("touch_controls_background").style.display="table";
 
 		}
 		else{
 			//document.getElementById("touch_controls_gfx").style.display="none";
-			document.getElementById("touch_controls_background").style.display="none";
+			//document.getElementById("touch_controls_background").style.display="none";
 		}
 
 		if (!p8_is_running)
@@ -587,11 +587,12 @@ canvas{
 
 		<div id="p8_playarea" style="display:none; margin:auto;">
 
+			<!-- I'm not sure what this does, part of touchscreen controls tho - ->
 			<div  id="touch_controls_background"
 				  style=" pointer-events:none; display:none; background-color:#000;
 						 position:fixed; top:0px; left:0px; border:0; width:100vw; height:100vh">
 				&nbsp
-			</div>
+			</div-->
 
 			<div style="display:flex; position:relative">
 				<canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault();" ></canvas>
@@ -651,6 +652,8 @@ canvas{
 	}
 	
 </script>
+
+10:57
 
 <!-- uncomment this if you want clipboard access
 	<textarea id="codo_textarea" class="emscripten" style="position:absolute; left:-9999px;"></textarea>	
