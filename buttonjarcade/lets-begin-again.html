@@ -88,7 +88,7 @@
 	{
 		return x < 0 ? -x : x;
 	}
-	
+/*	
 	// step 0 down 1 drag 2 up
 	function pico8_buttons_event(e, step)
 	{
@@ -164,7 +164,7 @@
 			pico8_buttons[0] |= b;
 		}
 	}
-
+*/
 	// call this every frame --  browser is supposed to handle redundant changes, right?
 	// otherwise difficult to catch every case layout needs to be updated
 	function p8_update_layout()
@@ -417,7 +417,6 @@
 		}
 	}
 
-/*	
 	// gamepad  https://developer.mozilla.org/en-US/docs/Web/API/Gamepad_API/Using_the_Gamepad_API
 	// (sets bits in pico8_buttons[])
 	function p8_update_gamepads() {
@@ -455,7 +454,7 @@
 		requestAnimationFrame(p8_update_gamepads);
 	}
 	requestAnimationFrame(p8_update_gamepads);
-*/
+
 	// key blocker. prevent cursor keys from scrolling page while playing cart.
 	// also don't act on M, R so that can mute / reset cart
 	document.addEventListener('keydown',
