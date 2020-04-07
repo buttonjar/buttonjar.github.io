@@ -80,6 +80,7 @@
 				el.style.display="";
 			else
 				el.style.display="none";
+				
 		}
 		requestAnimationFrame(p8_update_button_icons);
 	}
@@ -574,6 +575,18 @@ changes, something.
 
 So far though, it IS promising.
 
+NOTES FOR LATER.
+
+Have screen texture area be clear, but button-panel is solid with 'CLICK TO START" or something on it.
+Possibility to make coin panel into a click zone as well? Will get covered with some media if so.. need to
+research more about the 'click to start' functions of prim media.
+
+Dustom 'start button' on start screens, or something? Can I trigger a sound on media engagement in LSL?
+
+"Coin-drop" "BEE-YOOP!" sound on media start, then press 'play button' and game sounds begin? MAYBE, it IS possible!
+
+start screen scaling method? Seems blurry compared to the game window
+
 -->
 
 <body style="padding:0px; margin:0px; background-color:#222; color:#ccc">
@@ -645,6 +658,142 @@ So far though, it IS promising.
 
 </div> <!-- p8_frame -->
 </div> <!-- size limit -->
+
+
+<hr />
+
+<style>
+
+table.framework
+{
+	width: 		512px;
+	min-width: 	512px;
+	max-width: 	512px;
+	height: 	512px;
+	min-height: 512px;
+	max-height: 512px;
+	
+	margin: auto;
+
+	border-collapse: collapse;
+}
+
+table.framework td
+{
+	padding: 0px;
+	border: 1px solid red;
+}
+
+table.framework td.game
+{
+	width:		384px;
+	min-width: 	384px;
+	max-width:	384px;
+	height:		384px;
+	min-height:	384px;
+	max-height:	384px;
+	border: 1px solid lime;
+}
+
+table.framework td.button
+{
+	wi2dth: 	128px;
+	mi2n-width: 128px;
+	m2ax-width: 128px;
+	height: 	128px;
+	min-height: 128px;
+	max-height: 128px;
+	
+		border: 1px solid gold;
+}
+
+table.framework td.side
+{
+	width: 		64px;
+	min-width: 	64px;
+	max-width: 	64px;
+	height: 	512px;
+	min-height: 512px;
+	max-height: 512px;
+}
+
+table.framework td.left
+{
+	background-color: #AA5511;
+}
+
+table.framework td.right
+{
+	background-color: #AA5511;
+}
+
+</style>
+
+
+<table class="framework">
+	<tr>
+		<td class="left side" rowspan="2">
+			&nbsp;
+		</td>
+		<td class="game" colspan="5" >
+			&nbsp;
+		</td>
+		<td class="right side" rowspan="2">
+			&nbsp;
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="button">
+		
+					<div class="p8_menu_button" id="p8b_controls" onClick="Module.pico8ToggleControlMenu();"
+					style="padding: 14px;
+					margin: auto;
+					border-radius: 20px;
+					border: 6px solid #FFF1E8;
+					background-color: #2F261F;
+					">
+					&nbsp;z
+					</div>	
+		</td>
+		<td class="buttonbox">
+					<div class="p8_menu_button" id="p8b_pause" onClick="Module.pico8TogglePaused();"
+					style=" padding: 14px;
+					margin: auto;
+					border-radius: 20px;
+					border: 6px solid #FFF1E8;
+					background-color: #2F261F;
+					">
+					</div>
+		</td>
+		<td class="buttonbox">
+					<div class="p8_menu_button" id="p8b_sound" onClick="p8_create_audio_context(); Module.pico8ToggleSound();"
+					style=" padding: 14px;
+					margin: auto;
+					border-radius: 20px;
+					border: 6px solid #FFF1E8;
+					background-color: #2F261F;
+					">
+					</div>
+		</td>
+		<td class="buttonbox">
+		
+
+							<img class="p8_menu_button" src="icon-64x64.png" onclick="window.location.reload(true);"
+							
+							style=" padding: 6px;
+					margin: auto;
+					border-radius: 12px;
+					border: 6px solid #FFF1E8;
+					background-color: #2F261F;
+					"/>
+
+		</td>
+		<td class="buttonbox">
+			GAME INFO
+		</td>
+	</tr>
+</table>
 
 <script type="text/javascript">
 
