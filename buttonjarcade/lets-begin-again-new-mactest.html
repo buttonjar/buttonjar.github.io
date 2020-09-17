@@ -912,6 +912,38 @@ License: <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0
 			}
 		};
 	}
+
+	
+	// mac z/x fix for SL media on prim only!
+	// cursor keys are not affected by this, so this is only catching z and x for pico-8
+	// mac version of dullahan sends keypress and keyup (instead of keydown) when a key is pressed and never sends anything when a key is released
+	// also, keypress should get sent repeatedly while the key is held but it only gets sent once
+	// the only way to let pico-8 know that you are not continually holding a key is to clear the pico8_buttons bitmask on a short timer
+	// unfortunately, this means that any games that require z or x to be held will not work properly on mac :(
+	if (navigator.userAgent.indexOf('Macintosh') > -1 && navigator.userAgent.indexOf('Dullahan') > -1 && navigator.userAgent.indexOf('SecondLife') > -1) {
+		document.addEventListener('keyup', function onEvent(event) {
+			if (!p8_is_running) return;
+
+			if (pico8_state.has_focus == 1) {
+				var key = event.key;
+		
+				if (key === 'z' || key === 'x') {
+					var b = 0;
+				
+					if (key === 'z') b |= 0x10;
+					if (key === 'x') b |= 0x20;
+
+					pico8_buttons[0] |= b;
+
+					setTimeout(function() {
+						pico8_buttons[0] = 0;
+					}, 200);
+
+					event.preventDefault();
+				}
+			}
+		}, {passive: false});
+	}	
 	
 </script>
 
